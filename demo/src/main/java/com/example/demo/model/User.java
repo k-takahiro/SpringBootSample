@@ -1,7 +1,10 @@
 package com.example.demo.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -18,6 +21,12 @@ public class User {
     private String email;
 
     @NotNull(message = "年齢を入力してください")
-    @Max(value = 100, message = "正しい年齢を入力してください")
+    @Min(value = 18, message = "年齢は18才以上で入力してください")
+    @Max(value = 100, message = "年齢は100才以下で入力してください")
     private Integer age;
+
+    @NotNull(message = "日付を入力してください")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String inputDate;
+    //private Data inputDate; // 型がDataはエラーになるためコメントアウトした。
 }
