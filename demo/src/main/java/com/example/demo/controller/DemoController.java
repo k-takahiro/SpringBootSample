@@ -18,10 +18,9 @@ import com.example.demo.model.User;
 @Controller
 public class DemoController {
 
-
     @GetMapping("/form")
     public String Form(Model model) {
-        model.addAttribute("user", new User());
+     model.addAttribute("user", new User());
         return "form";
     }
 
@@ -39,4 +38,20 @@ public class DemoController {
         // エラーなしは確認画面へ
         return "confirm";
     }
+
+ // 新規登録画面へ遷移
+ @GetMapping("/insert")
+ public String goInsert() {
+
+     return "insert";
+ }
+
+//  // 新規登録画面へ遷移
+//  @PostMapping("/insert")
+//  public String insert(Model model, Account account) {
+
+//      account = service.insertAccount(account);
+//      model.addAttribute("account", account);
+//      return "account/insertComplete";
+//  }
 }

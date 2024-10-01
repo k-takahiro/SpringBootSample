@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>家計簿</title>
+</head>
+<body>
+    <h1>新規登録画面</h1>
+    <form method="post" th:action="@{/insert}">
+        日時：<input type="date" name="date" required><br>
+        種別：
+        <input type="radio" name="type" value="1" checked>食費
+        <input type="radio" name="type" value="2">趣味
+        <input type="radio" name="type" value="3">教養<br>
+        品名：<input type="text" name="item" maxlength="15" size="30" required><br>
+        金額：<input type="number" name="price" oninput="sliceMaxLength(this, 8)" required>円<br>
+        <br> <input type="submit" value="登録">
+    </form>
+    <br>
+    <br>
+</body>
+</html>

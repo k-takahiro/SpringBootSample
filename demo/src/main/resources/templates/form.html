@@ -2,8 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
+  <link th:href="@{styles.css}" rel="stylesheet">
   <title>Title</title>
 </head>
+<table>
+  <tr>
+      <td><a href="#">利用者登録画面</a></td>
+      <td><a href="#">家計簿利用者一覧</a></td>
+      <td><a th:href="@{insert/}">家計簿登録</a></td>
+      <td><a href="#">家計簿一覧</a></td>
+      <td><a href="#">更新</a></td>
+      <td><a href="#">削除</a></td>
+  </tr>
+</table>
 <body>
   <form th:action="@{/form}" th:object="${user}" method="post">
     <table th:if="${validationError}">
