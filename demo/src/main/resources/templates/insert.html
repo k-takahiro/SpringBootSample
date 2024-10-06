@@ -1,22 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>家計簿</title>
+    <meta charset="UTF-8">
+    <title>新規登録画面</title>
 </head>
+
 <body>
-    <h1>新規登録画面</h1>
-    <form method="post" th:action="@{/insert}">
-        日時：<input type="date" name="date" required><br>
-        種別：
-        <input type="radio" name="type" value="1" checked>食費
-        <input type="radio" name="type" value="2">趣味
-        <input type="radio" name="type" value="3">教養<br>
-        品名：<input type="text" name="item" maxlength="15" size="30" required><br>
-        金額：<input type="number" name="price" oninput="sliceMaxLength(this, 8)" required>円<br>
-        <br> <input type="submit" value="登録">
+    <form th:action="@{/insert}" th:object="${item}" method="post">
+        <h4>品目登録</h4>
+        <table th:if="${validationError}">
+            <tr th:each="error : ${validationError}">
+                <td style="color: red;" th:text="${error}"></td>
+            </tr>
+        </table>
+        <label for="itemInsertDate">日時：</label>
+        <input type="date" id="today" th:field="*{itemInsertDate}"><br>
+
+        <!-- <label for="itemKind">種別：</label>
+        <input type="radio" th:field="*{itemKind}" value="1" checked>食費
+        <input type="radio" th:field="*{itemKind}" value="2">趣味
+        <input type="radio" th:field="*{itemKind}" value="3">教養
+        <input type="radio" th:field="*{itemKind}" value="4">その他<br> -->
+
+        <label for="itemKind">種別：</label>
+        <select>
+            <option value="00"></option>
+            <option
+                th:each="itemKind : ${itemKindMap}"
+                th:value="${itemKind.key}"
+                th:text="${itemKind.value}"
+                th:selected="${itemKind.key == selectedValue}">
+            </option>
+        </select><br>
+
+        <label for="itemName">品名：</label>
+        <input type="text" th:field="*{itemName}"><br>
+
+        <label for="itemPrice">金額：</label>
+        <input type="number" th:field="*{itemPrice}"><br>
+
+        <button>登録</button>
     </form>
-    <br>
-    <br>
 </body>
+
 </html>

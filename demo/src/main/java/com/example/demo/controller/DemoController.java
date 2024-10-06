@@ -1,9 +1,9 @@
 package com.example.demo.controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
-
-import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.model.Item;
 import com.example.demo.model.User;
 
 @Controller
@@ -20,7 +21,7 @@ public class DemoController {
 
     @GetMapping("/form")
     public String Form(Model model) {
-     model.addAttribute("user", new User());
+        model.addAttribute("user", new User());
         return "form";
     }
 
@@ -28,10 +29,10 @@ public class DemoController {
     public String Confirm(@ModelAttribute("user") @Validated User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             List<String> errorList = result.getAllErrors().stream()
-                .map(e -> e.getDefaultMessage())
-                .collect(Collectors.toList());
+                    .map(e -> e.getDefaultMessage())
+                    .collect(Collectors.toList());
             model.addAttribute("validationError", errorList);
-            // エラーの再度入力画面へ
+            // エラーの場合は再度入力画面へ
             return "form";
         }
         model.addAttribute("user", user);
@@ -39,19 +40,35 @@ public class DemoController {
         return "confirm";
     }
 
- // 新規登録画面へ遷移
- @GetMapping("/insert")
- public String goInsert() {
+    // 新規登録画面へ遷移
+    @GetMapping("/insert")
+    public String goInsert(Model model) {
+        model.addAttribute("item", new Item());
 
-     return "insert";
- }
+		// プルダウンリストを取得
+		Map<Integer, String> itemKindMap = new LinkedHashMap<Integer, String>();
+        itemKindMap.put(1, "食費");
+        itemKindMap.put(2, "趣味");
+        itemKindMap.put(3, "教養");
+        itemKindMap.put(4, "その他");
+		model.addAttribute("itemKindMap", itemKindMap);
 
-//  // 新規登録画面へ遷移
-//  @PostMapping("/insert")
-//  public String insert(Model model, Account account) {
+        return "insert";
+    }
 
-//      account = service.insertAccount(account);
-//      model.addAttribute("account", account);
-//      return "account/insertComplete";
-//  }
+    // 新規登録画面へ遷移
+    @PostMapping("/insert")
+    public String itemConfirm(@ModelAttribute("item") @Validated Item item, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            List<String> errorList = result.getAllErrors().stream()
+                    .map(e -> e.getDefaultMessage())
+                    .collect(Collectors.toList());
+            model.addAttribute("validationError", errorList);
+            // エラーの場合は再度入力画面へ
+            return "insert";
+        }
+        model.addAttribute("item", item);
+        // エラーなしは確認画面へ
+        return "ItemConfirm";
+    }
 }

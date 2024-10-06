@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -28,5 +29,5 @@ public class User {
     @NotNull(message = "日付を入力してください")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String inputDate;
-    //private Data inputDate; // 型がDataはエラーになるためコメントアウトした。
+    // private Data inputDate; // 型がDataはエラーになるためコメントアウトした。
 }

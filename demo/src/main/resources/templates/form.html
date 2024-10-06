@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <link th:href="@{styles.css}" rel="stylesheet">
@@ -7,33 +8,34 @@
 </head>
 <table>
   <tr>
-      <td><a href="#">利用者登録画面</a></td>
-      <td><a href="#">家計簿利用者一覧</a></td>
-      <td><a href="insert.html" th:href="@{/insert}">家計簿登録</a></td>
-      <td><a href="#">家計簿一覧</a></td>
-      <td><a href="#">更新</a></td>
-      <td><a href="#">削除</a></td>
+    <td><a href="#">利用者登録画面</a></td>
+    <td><a href="#">家計簿利用者一覧</a></td>
+    <td><a href="insert.html" th:href="@{/insert}">家計簿登録</a></td>
+    <td><a href="#">家計簿一覧</a></td>
+    <td><a href="#">更新</a></td>
+    <td><a href="#">削除</a></td>
   </tr>
 </table>
+
 <body>
   <form th:action="@{/form}" th:object="${user}" method="post">
     <table th:if="${validationError}">
       <tr th:each="error : ${validationError}">
-          <td style="color: red;" th:text="${error}"></td>
+        <td style="color: red;" th:text="${error}"></td>
       </tr>
     </table>
     <label for="name">氏名：</label>
     <input type="text" th:field="*{name}"><br>
-    
+
     <label for="email">E-Mail：</label>
     <input type="email" th:field="*{email}"><br>
-    
+
     <label for="age">年齢：</label>
     <input type="number" th:field="*{age}"><br>
-    
+
     <label for="inputDate">日付：</label>
     <input type="date" id="today" th:field="*{inputDate}"><br>
-    
+
     <button>送信</button>
   </form>
 </body>
@@ -41,8 +43,9 @@
   var today = new Date();
   today.setDate(today.getDate());
   var yyyy = today.getFullYear();
-  var mm = ("0"+(today.getMonth()+1)).slice(-2);
-  var dd = ("0"+today.getDate()).slice(-2);
-  document.getElementById("today").value=yyyy+'-'+mm+'-'+dd;
+  var mm = ("0" + (today.getMonth() + 1)).slice(-2);
+  var dd = ("0" + today.getDate()).slice(-2);
+  document.getElementById("today").value = yyyy + '-' + mm + '-' + dd;
 </script>
+
 </html>
