@@ -1,3 +1,4 @@
+-- PostgreSQLのSQL文
 -- バージョン
 select * From version();
 -- ユーザ名：
