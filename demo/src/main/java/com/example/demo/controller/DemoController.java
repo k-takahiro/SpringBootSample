@@ -26,7 +26,7 @@ public class DemoController {
     }
 
     @PostMapping("/form")
-    public String Confirm(@ModelAttribute("user") @Validated User user, BindingResult result, Model model) {
+    public String Confirm(@ModelAttribute @Validated User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             List<String> errorList = result.getAllErrors().stream()
                     .map(e -> e.getDefaultMessage())
@@ -57,7 +57,7 @@ public class DemoController {
 
     // 新規登録画面へ遷移
     @PostMapping("/insert")
-    public String itemConfirm(@ModelAttribute("item") @Validated Item item, BindingResult result, Model model) {
+    public String itemConfirm(@ModelAttribute @Validated Item item, BindingResult result, Model model) {
         if (result.hasErrors()) {
             List<String> errorList = result.getAllErrors().stream()
                     .map(e -> e.getDefaultMessage())
