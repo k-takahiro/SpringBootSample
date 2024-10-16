@@ -3,4 +3,4 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres # 接続先URL
     username: postgres # ユーザー名
-    password:  # パスワード
+    password: nakajun250tt # パスワード
