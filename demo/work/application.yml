@@ -1,4 +1,3 @@
-
 server.port=8090
 spring.datasource.url=jdbc:sqlite:C:\workspace\SpringBootSample\demo\src\main\java\com\example\demo\model\construct.db
 spring.datasource.driver-class-name = org.sqlite.JDBC

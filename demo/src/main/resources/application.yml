@@ -1,0 +1,6 @@
+##spring.application.name=demo プロパティ形式からyml形式に変更時のエラー
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres # 接続先URL
+    username: postgres # ユーザー名
+    password:  # パスワード
