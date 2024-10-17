@@ -29,4 +29,13 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String inputDate;
     // private Data inputDate; // 型がDataはエラーになるためコメントアウトした。
+
+    @NotBlank(message = "ユーザIDを入力してください")
+    private String userId;
+
+    @NotBlank(message = "パスワードを入力してください")
+    private String password;
+
+
+    
 }

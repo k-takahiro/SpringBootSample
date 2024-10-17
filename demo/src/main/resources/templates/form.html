@@ -9,7 +9,7 @@
 <table>
   <tr>
     <td><a href="#">利用者登録画面</a></td>
-    <td><a href="#">家計簿利用者一覧</a></td>
+    <td><a href="userlist.html" th:href="@{/userList}">登録者一覧</a></td>
     <td><a href="insert.html" th:href="@{/insert}">家計簿登録</a></td>
     <td><a href="#">家計簿一覧</a></td>
     <td><a href="#">更新</a></td>
@@ -17,7 +17,7 @@
   </tr>
 </table>
 
-<body>
+<body> 
   <form th:action="@{/form}" th:object="${user}" method="post">
     <table th:if="${validationError}">
       <tr th:each="error : ${validationError}">
@@ -35,6 +35,12 @@
 
     <label for="inputDate">利用開始日：</label>
     <input type="date" id="today" th:field="*{inputDate}"><br>
+
+    <label for="userId">ユーザID：</label>
+    <input type="text" th:field="*{userId}"><br>
+
+    <label for="password">パスワード：</label>
+    <input type="text" th:field="*{password}"><br>
 
     <!-- <label for="address">住所：</label>
     <input type="text" id="addressId" th:field="*{address}"><br> -->

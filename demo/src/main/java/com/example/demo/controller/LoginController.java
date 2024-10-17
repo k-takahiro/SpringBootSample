@@ -34,7 +34,7 @@ public class LoginController {
   /**
    * ログイン処理を行う
    * 
-   * @param name     ユーザー名
+   * @param name     q  ユーザー名
    * @param password パスワード
    * @param model    モデル
    * @return ログイン成功時は/home、失敗時は/loginに遷移

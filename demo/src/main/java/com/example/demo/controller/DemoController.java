@@ -35,4 +35,5 @@ public class DemoController {
         // エラーなしは確認画面へ
         return "confirm";
     }
+    // https://medium-company.com/spring-boot-thymeleaf%e3%81%a7%e6%96%b0%e8%a6%8f%e7%99%bb%e9%8c%b2%e7%94%bb%e9%9d%a2%e3%82%92%e4%bd%9c%e6%88%90%e3%81%99%e3%82%8b/
 }
