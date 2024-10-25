@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <link th:href="@{styles.css}" rel="stylesheet">
-  <title>Title</title>
+  <title>利用者入力画面</title>
 </head>
 <table>
   <tr>
-    <td><a href="#">利用者登録画面</a></td>
-    <td><a href="userlist.html" th:href="@{/userList}">登録者一覧</a></td>
+    <td><a href="#">利用者入力</a></td>
+    <td><a href="userList.html" th:href="@{/userList}">利用者一覧</a></td>
     <td><a href="insert.html" th:href="@{/insert}">家計簿登録</a></td>
     <td><a href="#">家計簿一覧</a></td>
     <td><a href="#">更新</a></td>
@@ -17,7 +17,7 @@
   </tr>
 </table>
 
-<body> 
+<body>
   <form th:action="@{/form}" th:object="${user}" method="post">
     <table th:if="${validationError}">
       <tr th:each="error : ${validationError}">
@@ -31,7 +31,7 @@
     <input type="email" th:field="*{email}"><br>
 
     <label for="age">年齢：</label>
-    <input type="number" th:field="*{age}"><br>
+    <input type="number" th:f ield="*{age}"><br>
 
     <label for="inputDate">利用開始日：</label>
     <input type="date" id="today" th:field="*{inputDate}"><br>
@@ -42,10 +42,7 @@
     <label for="password">パスワード：</label>
     <input type="text" th:field="*{password}"><br>
 
-    <!-- <label for="address">住所：</label>
-    <input type="text" id="addressId" th:field="*{address}"><br> -->
-
-    <button>送信</button>
+    <button>確認画面へ</button>
   </form>
 </body>
 <script th:inline="javascript">

@@ -12,6 +12,9 @@ import lombok.Data;
 
 @Data
 public class User {
+
+    private String id;
+
     @NotBlank(message = "名前を入力してください")
     @Size(max = 10, message = "名前は10桁以内で入力してください")
     private String name;
