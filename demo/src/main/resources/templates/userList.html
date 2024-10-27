@@ -18,7 +18,7 @@
       <td><a href="#">削除</a></td>
     </tr>
   </table>
-  
+
   <div class="list">
     <table id="table" class="table table-striped table-hover">
       <thead class="thead-lignt">
@@ -33,7 +33,7 @@
           <td th:text=${user.name}></td>
           <td>
             <!-- <a class="btn btn-primary">詳細</a> -->
-            <td><a th:href="@{/user/{user.id}(id=*{user.id})}" class="btn btn-secondary">詳細</a></td>
+          <td><a th:href="@{/user/{user.id}(id=*{user.id})}" class="btn btn-secondary">詳細</a></td>
           </td>
           <td>
             <button type="button" class="btn btn-danger">削除</button>
@@ -42,7 +42,6 @@
       </tbody>
     </table>
   </div>
-  
 </body>
 
 </html>

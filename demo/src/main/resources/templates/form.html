@@ -36,11 +36,14 @@
     <label for="inputDate">利用開始日：</label>
     <input type="date" id="today" th:field="*{inputDate}"><br>
 
+    <label for="phone">電話番号：</label>
+    <input type="text" id="phone" placeholder="電話番号は先頭から0が始まり、6桁から11桁までの数字を入力してください" oninput="checkPassword()"><br>
+
     <label for="userId">ユーザID：</label>
     <input type="text" th:field="*{userId}"><br>
 
-    <label for="password">パスワード：</label>
-    <input type="text" th:field="*{password}"><br>
+    <label for="password">パスワード:</label>
+    <input type="password" id="password" name="password" th:field="*{password}"><br><br>
 
     <button>確認画面へ</button>
   </form>
@@ -52,6 +55,24 @@
   var mm = ("0" + (today.getMonth() + 1)).slice(-2);
   var dd = ("0" + today.getDate()).slice(-2);
   document.getElementById("today").value = yyyy + '-' + mm + '-' + dd;
+
+  // function checkPassword() {
+  //   let phone = document.getElementById("phone").value;
+  //   let validationMessages = "";
+
+  //   if (phone.length < 6) {
+  //     validationMessages += "NGです。<br>";
+  //   }
+  //   document.getElementById("validationMessages").innerHTML = validationMessages;
+  // }
+  const myInput = document.getElementById('phone');
+
+  myInput.addEventListener('input', function (event) {
+    console.log('入力値:', event.target.value);
+    // ここで入力値に基づく処理を実行
+  });
+
+
 </script>
 
 </html>

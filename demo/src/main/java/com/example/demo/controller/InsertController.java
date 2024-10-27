@@ -23,13 +23,13 @@ public class InsertController {
     public String goInsert(Model model) {
         model.addAttribute("item", new Item());
 
-		// プルダウンリストを作成
-		Map<Integer, String> itemKindMap = new LinkedHashMap<Integer, String>();
+        // プルダウンリストを作成
+        Map<Integer, String> itemKindMap = new LinkedHashMap<Integer, String>();
         itemKindMap.put(1, "食費");
         itemKindMap.put(2, "趣味");
         itemKindMap.put(3, "教養");
         itemKindMap.put(4, "その他");
-		model.addAttribute("itemKindMap", itemKindMap);
+        model.addAttribute("itemKindMap", itemKindMap);
         return "insert";
     }
 

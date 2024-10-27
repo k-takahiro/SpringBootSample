@@ -13,32 +13,37 @@ import lombok.Data;
 @Data
 public class User {
 
+    // 利用者ID
     private String id;
 
+    // 利用者氏名
     @NotBlank(message = "名前を入力してください")
     @Size(max = 10, message = "名前は10桁以内で入力してください")
     private String name;
 
+    // 利用者メールアドレス
     @NotBlank(message = "メールアドレスを入力してください")
     @Email
     private String email;
 
+    // 利用者年齢
     @NotNull(message = "年齢を入力してください")
     @Min(value = 18, message = "年齢は18才以上で入力してください")
     @Max(value = 100, message = "年齢は100才以下で入力してください")
     private Integer age;
 
+    // 利用者開始日付
     @NotNull(message = "日付を入力してください")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String inputDate;
     // private Data inputDate; // 型がDataはエラーになるためコメントアウトした。
 
+    // 利用者ユーザID
     @NotBlank(message = "ユーザIDを入力してください")
     private String userId;
 
+    // 利用者パスワード
     @NotBlank(message = "パスワードを入力してください")
     private String password;
 
-
-    
 }
