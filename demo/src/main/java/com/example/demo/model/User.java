@@ -32,11 +32,14 @@ public class User {
     @Max(value = 100, message = "年齢は100才以下で入力してください")
     private Integer age;
 
-    // 利用者開始日付
+    // 利用者利用開始日付
     @NotNull(message = "日付を入力してください")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String inputDate;
     // private Data inputDate; // 型がDataはエラーになるためコメントアウトした。
+
+    // 利用者電話番号
+    private String user_phone;
 
     // 利用者ユーザID
     @NotBlank(message = "ユーザIDを入力してください")
@@ -46,4 +49,9 @@ public class User {
     @NotBlank(message = "パスワードを入力してください")
     private String password;
 
+    // 利用者登録日時
+    private String user_insert_date;
+
+    // 利用者更新日時
+    private String user_update_date;
 }

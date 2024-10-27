@@ -27,9 +27,11 @@ public class UserDetailsController {
         user.setEmail((String) map.get("e_mail"));
         user.setAge(Integer.parseInt((String) map.get("age").toString()));
         user.setInputDate((String) map.get("use_start_date").toString());
+        user.setUser_phone((String) map.get("user_phone").toString());
         user.setUserId((String) map.get("user_id"));
         user.setPassword((String) map.get("password"));
-
+        user.setUser_insert_date((String) map.get("user_insert_date").toString());
+        user.setUser_update_date((String) map.get("user_update_date").toString());
         model.addAttribute("userDetails", user);
         return "userDetails";
     }

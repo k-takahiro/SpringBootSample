@@ -13,8 +13,11 @@
             <th class="col-2">メールアドレス</th>
             <th class="col-2">年齢</th>
             <th class="col-2">利用開始日</th>
+            <th class="col-2">電話番号</th>
             <th class="col-2">ユーザID</th>
             <th class="col-2">パスワード</th>
+            <th class="col-2">登録日時</th>
+            <th class="col-2">更新日時</th>
           </tr>
         </thead>
         <tbody>
@@ -24,8 +27,11 @@
             <td th:text=${user.email}></td>
             <td th:text=${user.age}></td>
             <td th:text=${user.inputDate}></td>
+            <td th:text=${user.user_phone}></td>
             <td th:text=${user.userId}></td>
             <td th:text=${user.password}></td>
+            <td th:text=${user.user_insert_date}></td>
+            <td th:text=${user.user_update_date}></td>
           </tr>
         </tbody>
       </table>
