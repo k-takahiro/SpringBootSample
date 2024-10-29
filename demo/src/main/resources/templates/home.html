@@ -4,11 +4,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログインページ</title>
+    <title>家計簿登録画面</title>
 </head>
 
 <body>
-    <h1>ログイン成功</h1>
+    <table>
+        <tr>
+            <td><a href="#">利用者入力</a></td>
+            <td><a href="userList.html" th:href="@{/userList}">利用者一覧</a></td>
+            <td><a href="insert.html" th:href="@{/insert}">家計簿登録</a></td>
+            <td><a href="#">家計簿一覧</a></td>
+            <td><a href="#">更新</a></td>
+            <td><a href="#">削除</a></td>
+        </tr>
+    </table>
+    <form th:action="@{/userKakeibo}" th:object="${user}" method="post">
+        <h3>簡単プラン</h3>
+        <table border="1" style="border-collapse: collapse" cellpadding="4">
+            <thead>
+                <tr>
+                    <th>ユーザID</th>
+                    <th>氏名</th>
+                    <th>対象日</th>
+                    <th>収入</th>
+                    <th>支出</th>
+                    <th>収支</th>
+                    <th>メモ</th>
+                    <th>集計ボタン</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>[[${user.id}]]</td>
+                    <td>[[${user.name}]]</td>
+                    <td><input type="date" id="today" th:field="*{inputDate}"></td>
+                    <td><input type="number" id="number" th:field="*{inputDate}"></td>
+                    <td><input type="number" id="number" th:field="*{inputDate}"></td>
+                    <td><input type="number" id="number" th:field="*{inputDate}"></td>
+                    <td><input type="number" id="number" th:field="*{inputDate}"></td>
+                    <td><button>集計</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <button>保存</button>
+    </form>
+
 </body>
+<script th:inline="javascript">
+    var today = new Date();
+    today.setDate(today.getDate());
+    var yyyy = today.getFullYear();
+    var mm = ("0" + (today.getMonth() + 1)).slice(-2);
+    var dd = ("0" + today.getDate()).slice(-2);
+    document.getElementById("today").value = yyyy + '-' + mm + '-' + dd;
+</script>
 
 </html>

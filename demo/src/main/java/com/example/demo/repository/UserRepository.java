@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.domain.User;
 
-
 @Repository
 public class UserRepository {
 
@@ -28,7 +27,6 @@ public class UserRepository {
 
     /**
      * ユーザー名とパスワードからユーザーを取得する.
-     * 
      * @param name     ユーザー名
      * @param password パスワード
      * @return ユーザー情報、存在しない場合は空のOptional
