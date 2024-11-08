@@ -4,7 +4,7 @@
     "editor.fontSize": 10,
     "workbench.editor.tabSizingFixedMaxWidth": 70,
     "workbench.editor.tabSizingFixedMinWidth": 38,
-    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.colorTheme": "Visual Studio Dark",
     "workbench.preferredDarkColorTheme": "Deep Dark Space",
     "workbench.preferredHighContrastColorTheme": "Deep Dark Space - Black Moon"
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.User;
+import com.example.demo.model.UserEasyHouse;
 import com.example.demo.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -80,6 +81,9 @@ public class LoginController {
         user.setId((String) map.get("id").toString());
         user.setName((String) map.get("user_name"));
         model.addAttribute("user", user);
+
+        // UserEasyHouse userEasyHouse = new UserEasyHouse();
+        // model.addAttribute("userEasyHouse", userEasyHouse);
         return "/home";
     }
 
