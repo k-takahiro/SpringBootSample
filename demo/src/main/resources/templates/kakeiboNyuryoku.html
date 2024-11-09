@@ -17,7 +17,7 @@
     </table>
 
     <!-- 縦入力 -->
-    <form th:action="@{/kakeiboNyuryokuCtrl}" th:object="${userEasyHouse}" method="post">
+    <form th:action="@{/kakeiboNyuryoku}" th:object="${userEasyHouse}" method="post">
         <p style="text-decoration:underline; text-decoration-color:hwb(237 24% 10%);">簡単プラン</p>
         <table th:if="${validationError}">
           <tr th:each="error : ${validationError}">

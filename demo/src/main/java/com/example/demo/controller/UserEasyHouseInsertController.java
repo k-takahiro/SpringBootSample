@@ -20,7 +20,7 @@ public class UserEasyHouseInsertController {
     private JdbcTemplate jdbcTemplate;
 
     @PostMapping("/userCtrlKakeibo")
-    public String userInsert(Model model, UserEasyHouse userEasyHouse) throws ParseException {
+    public String userInsert(Model model, UserEasyHouse userEasyHouseInsert) throws ParseException {
 
         String sqlText = """
                                 INSERT
@@ -46,12 +46,12 @@ public class UserEasyHouseInsertController {
                 )
                                                 """;
 
-        var useStartDay = userEasyHouse.getTarget_date().replace("-", "/");
+        var useStartDay = userEasyHouseInsert.getTarget_date().replace("-", "/");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = dateFormat.parse(useStartDay);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        jdbcTemplate.update(sqlText, userEasyHouse.getId(), date, userEasyHouse.getIncome(),
-                userEasyHouse.getExpenses(), userEasyHouse.getComments(), userEasyHouse.getStatus(),
+        jdbcTemplate.update(sqlText, userEasyHouseInsert.getId(), date, userEasyHouseInsert.getIncome(),
+        userEasyHouseInsert.getExpenses(), userEasyHouseInsert.getComments(), userEasyHouseInsert.getStatus(),
                 timestamp, timestamp);
 
         return "login";

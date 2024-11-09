@@ -16,12 +16,12 @@ import com.example.demo.model.UserEasyHouse;
 @Controller
 public class KakeiboKantanConfirmController {
 
-    @GetMapping("/login")
-    public String goInsert(Model model) {
-        return "login";
-    }
+    // @GetMapping("/login")
+    // public String goInsert(Model model) {
+    //     return "login";
+    // }
 
-    @PostMapping("/kakeiboNyuryokuCtrl")
+    @PostMapping("/kakeiboNyuryoku")
     public String Confirm(@ModelAttribute @Validated UserEasyHouse userEasyHouse, BindingResult result, Model model) {
         if (result.hasErrors()) {
             List<String> errorList = result.getAllErrors().stream()
