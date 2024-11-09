@@ -56,21 +56,6 @@
   var dd = ("0" + today.getDate()).slice(-2);
   document.getElementById("today").value = yyyy + '-' + mm + '-' + dd;
 
-  // function checkPassword() {
-  //   let phone = document.getElementById("phone").value;
-  //   let validationMessages = "";
-
-  //   if (phone.length < 6) {
-  //     validationMessages += "NGです。<br>";
-  //   }
-  //   document.getElementById("validationMessages").innerHTML = validationMessages;
-  // }
-  const myInput = document.getElementById('phone');
-
-  myInput.addEventListener('input', function (event) {
-    console.log('入力値:', event.target.value);
-    // ここで入力値に基づく処理を実行
-  });
 </script>
 
 </html>

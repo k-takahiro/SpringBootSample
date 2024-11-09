@@ -20,39 +20,42 @@
     <form th:action="@{/kakeiboNyuryoku}" th:object="${userEasyHouse}" method="post">
         <p style="text-decoration:underline; text-decoration-color:hwb(237 24% 10%);">簡単プラン</p>
         <table th:if="${validationError}">
-          <tr th:each="error : ${validationError}">
-            <td style="color: red;" th:text="${error}"></td>
-          </tr>
+            <tr th:each="error : ${validationError}">
+                <td style="color: red;" th:text="${error}"></td>
+            </tr>
         </table>
 
         <label for="userId">ユーザID：</label>
-        <input type="text" name="id" th:value="${user.id}" readonly><br>
-        
+        <input type="text" id="userId" th:value="${user.id}" onclick="alertFun()" readonly><br>
+
         <label for="name">氏名：</label>
-        <input type="text" name="name" th:value="${user.name}" readonly><br>
+        <input type="text" id="name" th:value="${user.name}" onclick="changeColor()" readonly><br>
+        <!-- クリックで表示させるテキストにはhiddenクラスを付ける -->
+        <p id="btn2-text" class="hidden">氏名は変更できません</p>
 
         <label for="name">対象日：</label>
         <input type="date" id="today" name="target_date" th:value="${target_date}"><br>
-    
+
         <label for="income">収入：</label>
         <input type="number" id="income" name="income" th:value="${income}"><br>
-    
+
         <label for="expenses">支出：</label>
         <input type="number" id="expenses" name="expenses" th:value="${expenses}"><br>
-    
-        <label for="income_and_expenditure">収支：</label>
-        <input type="number" id="income_and_expenditure" name="income_and_expenditure" th:value="${income_and_expenditure}"><br>
 
-        <label for="phone">コメント：</label>
+        <label for="income_and_expenditure">収支：</label>
+        <input type="number" id="income_and_expenditure" name="income_and_expenditure"
+            th:value="${income_and_expenditure}"><br>
+
+        <label for="comments">コメント：</label>
         <input type="text" id="comments" name="comments" th:value="${comments}"><br>
-    
+
         <label for="status">ステータス：</label>
-        <input type="text" id="status" name="status" th:value="${status}"><br>
-    
-        <button type="button" onclick="syukeiFun()">集計</button><br>
+        <input type="text" id="status" th:value="${status}"><br>
+
+        <button type="button" onclick="syukeiFun()">収支を計算する</button><br>
         <br>
         <button>入力内容確認へ</button>
-      </form>
+    </form>
 
 </body>
 <script th:inline="javascript">
@@ -71,6 +74,36 @@
         document.getElementById("income_and_expenditure").value = income_and_expenditure;
     }
 
+    function alertFun() {
+        alert('ユーザIDは変更できません');
+        var obj = document.getElementById("userId");
+        if (obj.style.borderWidth == "1px") {
+            obj.style.borderWidth = "1px";
+        } else {
+            obj.style.border = "solid 1px red";
+        }
+    }
+
+    // // TODO:
+    // const myInput = document.getElementById('btn2-text');
+    // myInput.addEventListener('click', function (event) {
+    //     // ボタンクリックでhiddenクラスを付け外しする
+    //     myInput.classList.toggle('hidden');
+    // });
+
 </script>
+
+<style>
+    /* クリックで表示させるテキストを隠す */
+    .hidden {
+        display: none;
+    }
+
+    #btn2-text {
+        margin: 16px 0;
+        font-size: 14px;
+        color: red;
+    }
+</style>
 
 </html>
