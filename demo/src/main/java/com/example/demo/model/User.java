@@ -38,7 +38,8 @@ public class User {
     private String inputDate;
     // private Data inputDate; // 型がDataはエラーになるためコメントアウトした。
 
-    // 利用者電話番号
+    // 利用者電話番号 
+    // TODO: javascriptにてバリデーションを実装したい。
     private String user_phone;
 
     // 利用者ユーザID

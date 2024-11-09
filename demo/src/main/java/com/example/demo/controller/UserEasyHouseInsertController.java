@@ -11,7 +11,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.example.demo.model.User;
 import com.example.demo.model.UserEasyHouse;
 
 @Controller

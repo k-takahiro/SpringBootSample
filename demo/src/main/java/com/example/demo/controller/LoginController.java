@@ -11,24 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.User;
-import com.example.demo.model.UserEasyHouse;
-import com.example.demo.service.UserService;
-
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("")
 public class LoginController {
 
   @Autowired
-  private UserService userService;
-
-  @Autowired
-  private HttpSession session;
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-
+  private JdbcTemplate jdbcTemplate;
 
   @GetMapping("")
   public String login() {
@@ -40,51 +29,21 @@ public class LoginController {
     return "/login";
   }
 
-  /**
-   * ログイン処理を行う
-   * 
-   * @param name     ユーザー名
-   * @param password パスワード
-   * @param model    モデル
-   * @return ログイン成功時は/home、失敗時は/loginに遷移
-   */
-  // @PostMapping("/login")
-  // public String login(String userId, String password, Model model) {
-  //   return userService.findByUser(userId, password)
-  //       .map(user -> {
-  //         session.setAttribute("user", user);
-  //         return "/home";
-  //       })
-  //       .orElseGet(() -> {
-  //         model.addAttribute("userId", userId);
-  //         model.addAttribute("message", "ユーザー名またはパスワードが違います");
-  //         return "/login";
-  //       });
-
-  // }
-
-  @GetMapping("/home")
-  public String home() {
-    // // sessionはもう少し進められてから書きたいのと混乱防止のためコメントアウト。
-    // if (session.getAttribute("user") == null) {
-    //   return "redirect:/login";
-    // }
-    return "/home";
-  }
-
-  
   @PostMapping("/login")
   public String login(String userId, String password, Model model) {
-        Map<String, Object> map = jdbcTemplate
-                .queryForMap("SELECT id, user_name FROM user_master_tbl WHERE user_id = '" + userId +  "' and password = '" +  password +"'");
-        User user = new User();
-        user.setId((String) map.get("id").toString());
-        user.setName((String) map.get("user_name"));
-        model.addAttribute("user", user);
+    Map<String, Object> map = jdbcTemplate
+        .queryForMap("SELECT id, user_name FROM user_master_tbl WHERE user_id = '" + userId + "' and password = '"
+            + password + "'");
+    User user = new User();
+    user.setId((String) map.get("id").toString());
+    user.setName((String) map.get("user_name"));
+    model.addAttribute("user", user);
 
-        // UserEasyHouse userEasyHouse = new UserEasyHouse();
-        // model.addAttribute("userEasyHouse", userEasyHouse);
-        return "/home";
-    }
+    // UserEasyHouse userEasyHouse = new UserEasyHouse();
+    // userEasyHouse.setId((String) map.get("id").toString());
+    // userEasyHouse.setName((String) map.get("user_name"));
+    // model.addAttribute("userEasyHouse", userEasyHouse);
+    return "kakeiboNyuryoku";
+  }
 
 }

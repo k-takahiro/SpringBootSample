@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>家計簿登録画面</title>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td><a href="insert.html" th:href="@{/insert}">家計簿登録</a></td>
+            <td><a href="#">家計簿一覧</a></td>
+            <td><a href="#">家計簿更新</a></td>
+            <td><a href="#">家計簿削除</a></td>
+        </tr>
+    </table>
+
+    <!-- 縦入力 -->
+    <form th:action="@{/kakeiboNyuryokuCtrl}" th:object="${userEasyHouse}" method="post">
+        <p style="text-decoration:underline; text-decoration-color:hwb(237 24% 10%);">簡単プラン</p>
+        <table th:if="${validationError}">
+          <tr th:each="error : ${validationError}">
+            <td style="color: red;" th:text="${error}"></td>
+          </tr>
+        </table>
+
+        <label for="userId">ユーザID：</label>
+        <input type="text" name="id" th:value="${user.id}" readonly><br>
+        
+        <label for="name">氏名：</label>
+        <input type="text" name="name" th:value="${user.name}" readonly><br>
+
+        <label for="name">対象日：</label>
+        <input type="date" id="today" name="target_date" th:value="${target_date}"><br>
+    
+        <label for="income">収入：</label>
+        <input type="number" id="income" name="income" th:value="${income}"><br>
+    
+        <label for="expenses">支出：</label>
+        <input type="number" id="expenses" name="expenses" th:value="${expenses}"><br>
+    
+        <label for="income_and_expenditure">収支：</label>
+        <input type="number" id="income_and_expenditure" name="income_and_expenditure" th:value="${income_and_expenditure}"><br>
+
+        <label for="phone">コメント：</label>
+        <input type="text" id="comments" name="comments" th:value="${comments}"><br>
+    
+        <label for="status">ステータス：</label>
+        <input type="text" id="status" name="status" th:value="${status}"><br>
+    
+        <button type="button" onclick="syukeiFun()">集計</button><br>
+        <br>
+        <button>入力内容確認へ</button>
+      </form>
+
+</body>
+<script th:inline="javascript">
+    var today = new Date();
+    today.setDate(today.getDate());
+    var yyyy = today.getFullYear();
+    var mm = ("0" + (today.getMonth() + 1)).slice(-2);
+    var dd = ("0" + today.getDate()).slice(-2);
+    document.getElementById("today").value = yyyy + '-' + mm + '-' + dd;
+
+    // https://nicoiworks.com/js-2/
+    function syukeiFun() {
+        var income = document.getElementById("income");
+        var expenses = document.getElementById("expenses");
+        var income_and_expenditure = Number(income.value) + Number(expenses.value)
+        document.getElementById("income_and_expenditure").value = income_and_expenditure;
+    }
+
+</script>
+
+</html>

@@ -2,12 +2,7 @@ package com.example.demo.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
@@ -20,13 +15,16 @@ public class UserEasyHouse {
     private String name;
 
     // 対象日
+    @NotNull(message = "対象日を入力してください")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String target_date;
 
     // 収入
+    @NotNull(message = "収入を入力してください")
     private Integer income;
 
     // 支出
+    @NotNull(message = "支出を入力してください")
     private Integer expenses;
 
     // 収支
