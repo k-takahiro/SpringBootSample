@@ -36,6 +36,7 @@
     <label for="inputDate">利用開始日：</label>
     <input type="date" id="today" th:field="*{inputDate}"><br>
 
+    <!-- TODO:エクリプスのコンパイラーのように存在しない変数、メソッドにエラーを表示させたい  -->
     <label for="phone">電話番号：</label>
     <input type="text" id="phone" placeholder="(例) 080-777-777" oninput="checkPassword()"><br>
 
@@ -44,6 +45,9 @@
 
     <label for="password">パスワード:</label>
     <input type="password" id="password" name="password" th:field="*{password}"><br><br>
+
+    <!-- TODO:入力したパスワード再確認をここに配置  -->
+    <!-- パスワードのバリデーションがOKになるまで、・非活性にしたい、 ・比較元との完全一致-->
 
     <button>確認画面へ</button>
   </form>

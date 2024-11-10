@@ -69,6 +69,8 @@ public class UserInfoInsertController {
                 user.getUserId(), user.getPassword());
 
         // ユーザ一覧画面へ
+        // TODO:値を渡していないためカラ画面に遷移する。最低でも登録した内容（データ）が一覧画面にでてくること。
+        // TODO:UIの工夫方法も集めて真似しながら分かりやすくしたいが、何をやるか呆然とした中でも明確にしたい。
         return "userList";
     }
 }

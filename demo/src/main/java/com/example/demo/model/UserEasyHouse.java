@@ -31,14 +31,16 @@ public class UserEasyHouse {
     private Integer income_and_expenditure;
     
     // コメント
+    @NotNull(message = "コメントを入力してください")
     private String comments;
 
     // ステータス
+    @NotNull(message = "ステータスを入力してください")
     private String status;
 
     // 利用者登録日時
     private String user_insert_date;
 
-    // 利用者更新日時
+    // 利用者最終更新日時
     private String user_update_date;
 }

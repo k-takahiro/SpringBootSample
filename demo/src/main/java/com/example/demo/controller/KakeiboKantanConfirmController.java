@@ -35,6 +35,7 @@ public class KakeiboKantanConfirmController {
                     .map(e -> e.getDefaultMessage())
                     .collect(Collectors.toList());
             model.addAttribute("validationError", errorList);
+            
             // エラーの場合は再度入力画面へ
             return "kakeiboNyuryoku";
         }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.model.User;
+import com.example.demo.model.UserEasyHouse;
 
 @Controller
 @RequestMapping("")
@@ -34,16 +34,11 @@ public class LoginController {
     Map<String, Object> map = jdbcTemplate
         .queryForMap("SELECT id, user_name FROM user_master_tbl WHERE user_id = '" + userId + "' and password = '"
             + password + "'");
-    User user = new User();
-    user.setId((String) map.get("id").toString());
-    user.setName((String) map.get("user_name"));
-    model.addAttribute("user", user);
 
-    // UserEasyHouse userEasyHouse = new UserEasyHouse();
-    // userEasyHouse.setId((String) map.get("id").toString());
-    // userEasyHouse.setName((String) map.get("user_name"));
-    // model.addAttribute("userEasyHouse", userEasyHouse);
+    UserEasyHouse userEasyHouse = new UserEasyHouse();
+    userEasyHouse.setId((String) map.get("id").toString());
+    userEasyHouse.setName((String) map.get("user_name"));
+    model.addAttribute("userEasyHouse", userEasyHouse);
     return "kakeiboNyuryoku";
   }
-
 }
