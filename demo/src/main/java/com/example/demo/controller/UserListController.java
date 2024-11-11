@@ -29,17 +29,14 @@ public class UserListController {
         return "userList";
     }
 
-    // Userテーブルの全データを取得.
     public List<User> selectMany() throws DataAccessException {
-
-        // M_USERテーブルのデータを全件取得
+        // Userテーブルの全データを取得.
         List<Map<String, Object>> getList = jdbcTemplate.queryForList("SELECT id, user_name FROM user_master_tbl");
 
-        // 結果返却用の変数
-        List<User> userList = new ArrayList<>();
-
+        // 結果返却用の変数：userList
         // 取得したデータを結果返却用のListに格納していく
         // 結果返却用のListに追加
+        List<User> userList = new ArrayList<>();
         for (Map<String, Object> map : getList) {
             User user = new User();
             user.setId((String) map.get("id").toString());

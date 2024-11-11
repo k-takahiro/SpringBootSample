@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -27,15 +28,20 @@ public class UserEasyHouse {
     @NotNull(message = "支出を入力してください")
     private Integer expenses;
 
+    // TODO:途中に入力チェックをしない項目があるとこれ以降は入力チェックされない。
+    // 再現、＠NotNullをコメントアウトして、画面にて未入力の状態で登録押下。
     // 収支
+    @NotNull(message = "収支を入力してください")
     private Integer income_and_expenditure;
     
     // コメント
-    @NotNull(message = "コメントを入力してください")
+    //@NotNull(message = "コメントを入力してください")
+    @NotBlank(message = "コメントを入力してください")
     private String comments;
 
     // ステータス
-    @NotNull(message = "ステータスを入力してください")
+   // @NotNull(message = "ステータスを入力してください")
+    @NotBlank(message = "ステータスを入力してください")
     private String status;
 
     // 利用者登録日時
