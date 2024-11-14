@@ -10,47 +10,53 @@
     <table>
         <tr>
             <td><a href="insert.html" th:href="@{/insert}">家計簿登録</a></td>
-            <td><a href="#">家計簿一覧</a></td>
+            <td><a href="kakeiboKantanUserList.html" th:href="@{/kakeiboKantanUserList}">家計簿一覧</a></td>
             <td><a href="#">家計簿更新</a></td>
             <td><a href="#">家計簿削除</a></td>
         </tr>
     </table>
-
     <!-- 縦入力 -->
     <form th:action="@{/kakeiboNyuryoku}" th:object="${userEasyHouse}" method="post">
         <p style="text-decoration:underline; text-decoration-color:hwb(237 24% 10%);">簡単プラン</p>
-        <table th:if="${validationError}">
-            <tr th:each="error : ${validationError}">
-                <td style="color: red;" th:text="${error}"></td>
-            </tr>
-        </table>
 
         <label for="userId">ユーザID：</label>
         <input type="text" id="userId" th:field="*{id}" onclick="alertFun()" readonly><br>
 
+        <!-- クリックで表示させるテキストにはhiddenクラスを付ける -->
         <label for="name">氏名：</label>
         <input type="text" id="name" th:field="*{name}" onclick="changeColor()" readonly><br>
-        <!-- クリックで表示させるテキストにはhiddenクラスを付ける -->
         <p id="btn2-text" class="hidden">氏名は変更できません</p>
 
         <label for="name">対象日：</label>
-        <input type="date" id="today" name="target_date" th:field="*{target_date}"><br>
+        <input type="date" id="today" name="target_date" th:field="*{target_date}">
+        <span class="errorStr" th:errors="*{target_date}"></span>
+        <br>
 
         <label for="income">収入：</label>
-        <input type="number" id="income" name="income" th:field="*{income}"><br>
+        <input type="number" id="income" name="income" th:field="*{income}">
+        <span class="errorStr" th:errors="*{income}"></span>
+        <br>
 
         <label for="expenses">支出：</label>
-        <input type="number" id="expenses" name="expenses" th:field="*{expenses}"><br>
+        <input type="number" id="expenses" name="expenses" th:field="*{expenses}">
+        <span class="errorStr" th:errors="*{expenses}"></span>
+        <br>
 
         <label for="income_and_expenditure">収支：</label>
         <input type="number" id="income_and_expenditure" name="income_and_expenditure"
-            th:field="*{income_and_expenditure}"><br>
+            th:field="*{income_and_expenditure}">
+            <span class="errorStr" th:errors="*{income_and_expenditure}"></span>
+            <br>
 
         <label for="comments">コメント：</label>
-        <input type="text" id="comments" name="comments" th:field="*{comments}"><br>
+        <input type="text" id="comments" name="comments" th:field="*{comments}">
+        <span class="errorStr" th:errors="*{comments}"></span>
+        <br>
 
         <label for="status">ステータス：</label>
-        <input type="text" id="status" th:field="*{status}"><br>
+        <input type="text" id="status" th:field="*{status}">
+        <span class="errorStr" th:errors="*{status}"></span>
+        <br>
 
         <button type="button" onclick="syukeiFun()">収支を計算する</button><br>
         <br>
@@ -84,7 +90,7 @@
         }
     }
 
-    // // TODO:
+    // // TODO:addEventListener
     // const myInput = document.getElementById('btn2-text');
     // myInput.addEventListener('click', function (event) {
     //     // ボタンクリックでhiddenクラスを付け外しする
@@ -94,6 +100,10 @@
 </script>
 
 <style>
+    .errorStr {
+        color: red;
+    }
+
     /* クリックで表示させるテキストを隠す */
     .hidden {
         display: none;

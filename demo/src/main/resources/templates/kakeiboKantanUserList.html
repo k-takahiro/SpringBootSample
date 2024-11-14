@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <link th:href="@{styles.css}" rel="stylesheet">
+  <title>家計簿簡単登録一覧画面</title>
+</head>
+
+<body>
+  <table>
+    <tr>
+        <td><a href="insert.html" th:href="@{/insert}">家計簿登録</a></td>
+        <td><a href="kakeiboKantanUserList.html" th:href="@{/kakeiboKantanUserList}">家計簿一覧</a></td>
+        <td><a href="#">家計簿更新</a></td>
+        <td><a href="#">家計簿削除</a></td>
+    </tr>
+</table>
+  <div>
+    <table border="1" style="border-collapse: collapse" cellpadding="4">
+      <thead>
+        <tr>
+          <th>利用者ID</th>
+          <th>氏名</th>
+          <th>対象日</th>
+          <th>収入</th>
+          <th>支出</th>
+          <th>コメント</th>
+          <th>ステータス</th>
+          <th>登録日時</th>
+          <th>更新日時</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="user: ${kakeiboKantan}">
+          <td th:text=${user.id}></td>
+          <td th:text=${user.name}></td>
+          <td th:text=${user.target_date}></td>
+          <td th:text=${user.income}></td>
+          <td th:text=${user.expenses}></td>
+          <td th:text=${user.comments}></td>
+          <td th:text=${user.status}></td>
+          <td th:text=${user.user_insert_date}></td>
+          <td th:text=${user.user_update_date}></td>
+          <td>
+          <td><a th:href="@{/user/{user.id}(id=*{user.id})}">詳細</a></td>
+          </td>
+          <td>
+            <button type="button">削除</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

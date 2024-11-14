@@ -51,9 +51,9 @@ public class UserEasyHouseInsertController {
         Date date = dateFormat.parse(useStartDay);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         jdbcTemplate.update(sqlText, userEasyHouseInsert.getId(), date, userEasyHouseInsert.getIncome(),
-        userEasyHouseInsert.getExpenses(), userEasyHouseInsert.getComments(), userEasyHouseInsert.getStatus(),
+                userEasyHouseInsert.getExpenses(), userEasyHouseInsert.getComments(), userEasyHouseInsert.getStatus(),
                 timestamp, timestamp);
 
-        return "login";
+        return "redirect:/kakeiboKantanUserList";
     }
 }
