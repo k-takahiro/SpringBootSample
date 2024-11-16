@@ -64,7 +64,26 @@
     まずは、シンプル（初期値などがプログラムへ直書きのもの）なものを参考にさせてもらう。jsでの非同期処理（ajax）やリストの動的変化は今後。。
      https://qiita.com/parapore/items/22ca680ed8b487b4bea1 
     -->
-    <label for="dateofBirth">生年月日：</label>
+    <label for="dateOfBirth">生年月日：</label>
+    <div>
+      <select id="birtyday" name="birthday">
+        <option th:each="i : ${#numbers.sequence(2020, 1920)}"
+          th:value="${i}" th:text="${i}" th:selected="${i == birthYear}">
+        </option>
+      </select>
+      
+      <select id="birthMonth" name="birthMonth">
+        <option th:each="i : ${#numbers.sequence(1, 12)}" th:value="${i}"
+          th:text="${i}" th:selected="${i == birthMonth}"></option>
+      </select>
+      
+      <select id="birthDay" name="birthDay">
+        <option th:each="i : ${#numbers.sequence(1, 31)}" th:value="${i}"
+          th:text="${i}" th:selected="${i == birthDay}"></option>
+      </select>
+    </div>
+
+
 
     <button>確認画面へ</button>
   </form>

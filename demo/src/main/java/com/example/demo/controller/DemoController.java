@@ -28,17 +28,25 @@ public class DemoController {
     @GetMapping("/form")
     public String Form(Model model) {
 
+        // 都道府県テーブルから都道府県コード、都道府県名を取得して都道府県リストへ代入する。
+        // 都道府県を設定するプルダウンリストを作成する。
         List<Map<String, Object>> prefList = jdbcTemplate
                 .queryForList("SELECT prefcode , prefname FROM public.prefmastertbl");
-
-        // プルダウンリストを作成
         Map<String, String> itemKindMap = new LinkedHashMap<String, String>();
         for (var prefPair : prefList) {
             itemKindMap.put ((String) prefPair.get("prefcode"), (String) prefPair.get("prefname"));
         }
-
-        model.addAttribute("user", new User());
         model.addAttribute("itemKindMap", itemKindMap);
+        model.addAttribute("user", new User());
+        
+        // 生年月日を設定するプルダウンリストを作成する。
+		int birthYear = 2002;
+		int birthMonth = 8;
+		int birthDay = 3;
+		model.addAttribute("birthYear", birthYear);
+		model.addAttribute("birthMonth", birthMonth);
+		model.addAttribute("birthDay", birthDay);
+
 
         return "form";
     }
