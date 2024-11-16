@@ -48,14 +48,24 @@
 
     <!-- TODO:入力したパスワード再確認をここに配置  -->
     <!-- パスワードのバリデーションがOKになるまで、・非活性にしたい、 ・比較元との完全一致-->
+    <!-- パスワード完全一致について、（spring徹底入門の228ページ付近）　　これが独自のバリデータで相関チェックのようである。 -->
 
+    <!-- セレクトボックスの出力については、「spring徹底入門の263ページ付近」がヒントかもだが、
+     アクション（ボタン押下）を境にリストの初期化はbeanObjectの理解も手掛かりかも -->
     <label for="itemKind">都道府県：</label>
-    <select id="singleSelect" name="itemKindMaps">
+    <select>
       <option value="">---</option>
       <option th:each="itemKind : ${itemKindMap}" th:value="${itemKind.key}" th:text="${itemKind.value}"
-      th:field="*{prefname}">pulldown</option>
+      th:selected="${itemKind.key == selectedValue}">
     </select>
     <br>
+
+    <!-- 生年月日を記載する欄をここに配置する。セレクトボックス、生年月日はネットで情報が多いためリストの初期化の解消にもつながりそう。
+    まずは、シンプル（初期値などがプログラムへ直書きのもの）なものを参考にさせてもらう。jsでの非同期処理（ajax）やリストの動的変化は今後。。
+     https://qiita.com/parapore/items/22ca680ed8b487b4bea1 
+    -->
+    <label for="dateofBirth">生年月日：</label>
+
     <button>確認画面へ</button>
   </form>
 </body>
