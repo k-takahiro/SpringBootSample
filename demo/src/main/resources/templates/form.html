@@ -44,11 +44,18 @@
     <input type="text" th:field="*{userId}"><br>
 
     <label for="password">パスワード:</label>
-    <input type="password" id="password" name="password" th:field="*{password}"><br><br>
+    <input type="password" id="password" name="password" th:field="*{password}"><br>
 
     <!-- TODO:入力したパスワード再確認をここに配置  -->
     <!-- パスワードのバリデーションがOKになるまで、・非活性にしたい、 ・比較元との完全一致-->
 
+    <label for="itemKind">都道府県：</label>
+    <select id="singleSelect" name="itemKindMaps">
+      <option value="">---</option>
+      <option th:each="itemKind : ${itemKindMap}" th:value="${itemKind.key}" th:text="${itemKind.value}"
+      th:field="*{prefname}">pulldown</option>
+    </select>
+    <br>
     <button>確認画面へ</button>
   </form>
 </body>
