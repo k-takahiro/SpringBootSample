@@ -5,11 +5,14 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.config.Configurator;
 import com.example.demo.model.UIItem;
 import com.example.demo.model.User;
 import com.example.demo.model.UserEasyHouse;
@@ -46,36 +50,37 @@ public class DemoController {
         model.addAttribute("itemKindMap", itemKindMap);
         model.addAttribute("user", new User());
 
-        List<String> dateList = new LinkedList<>(); 
-        LocalDate strDay = LocalDate.of(1900, 1, 1);
-        LocalDate endDay = LocalDate.of(2020,12,31);
-        long localDiffDays1 = ChronoUnit.DAYS.between(strDay, endDay);
-
-        for (int i = 0; i < Math.toIntExact(localDiffDays1); i++){
-            dateList.add(strDay.plusDays(i).toString());
+        // 生年月日のプルダウンリスト項目を作成する。
+        // Configurator.getInstance().getValueByKey("key1"); TODO:設定値は一旦直書き(マジックナンバー)する。
+        LocalDate startDay = LocalDate.of(2000, 1, 1);
+        LocalDate endDay = LocalDate.of(2010, 1, 11);
+        long diffDay = ChronoUnit.DAYS.between(startDay, endDay);
+        var dateOfBirthList = new LinkedList<LocalDate>();
+        for (int i = 0; i < Math.toIntExact(diffDay); i++) {
+            dateOfBirthList.add(startDay.plusDays(i));
         }
 
-        // 文字列の分割
-        
-
-        // 生年月日を設定するプルダウンリストを作成する。
-        int currentYear = YearMonth.now().getYear();
-        // 年プルダウン
-        List<String> birthYearList = new ArrayList<>();
-        for (int i = currentYear-70; i <= currentYear-20; i++) {
-            birthYearList.add(String.valueOf(i));
+        var yyyy = "";
+        var yyyyList = new ArrayList<String>();
+        var mmddList = new ArrayList<String>();
+        for (var day : dateOfBirthList){
+            if (!yyyy.equals(String.valueOf( day.getYear()))){
+                yyyyList.add(String.valueOf( day.getYear()));
+                yyyy = String.valueOf( day.getYear());
+            }
+            mmddList.add (String.valueOf(day.getMonthValue()) + "-" + String.valueOf( day.getDayOfMonth()));
         }
-        // 月プルダウン
-        List<String> monthList = new ArrayList<>();
-        for (int i = 1; i <= 12; i++) {
-            monthList.add(String.valueOf(i));
-        }
-        // 初期値
-        String birthYearDefault = String.valueOf(currentYear-30);
 
-        model.addAttribute("birthYearList", birthYearList);
-        model.addAttribute("birthYearDefault", birthYearDefault);
-        model.addAttribute("monthList", monthList);
+        model.addAttribute("birthYearList", yyyyList);
+        model.addAttribute("mmddList", mmddList);
+
+		// LocalDateの月末日を取得
+		LocalDate targetDate = LocalDate.of(2020, 2, 1);
+		LocalDate result = targetDate.with(TemporalAdjusters.lastDayOfMonth());
+		System.out.println("LocalDate.with(TemporalAdjusters.lastDayOfMonth()) = " + result);
+
+
+
         return "form";
     }
 

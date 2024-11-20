@@ -18,7 +18,7 @@ public class User {
 
     // 利用者氏名
     @NotBlank(message = "名前を入力してください")
-    @Size(max = 10, message = "名前は10桁以内で入力してください")
+    @Size(max = 255, message = "名前は255桁以内で入力してください")
     private String name;
 
     // 利用者メールアドレス
