@@ -1,18 +1,13 @@
 package com.example.demo.controller;
 
-import java.sql.Date;
 import java.time.LocalDate;
-import java.time.YearMonth;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.demo.config.Configurator;
-import com.example.demo.model.UIItem;
 import com.example.demo.model.User;
-import com.example.demo.model.UserEasyHouse;
 
 @Controller
 public class DemoController {
@@ -78,8 +70,6 @@ public class DemoController {
 		LocalDate targetDate = LocalDate.of(2020, 2, 1);
 		LocalDate result = targetDate.with(TemporalAdjusters.lastDayOfMonth());
 		System.out.println("LocalDate.with(TemporalAdjusters.lastDayOfMonth()) = " + result);
-
-
 
         return "form";
     }

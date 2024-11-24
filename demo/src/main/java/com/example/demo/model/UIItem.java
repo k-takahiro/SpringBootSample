@@ -1,9 +1,5 @@
 package com.example.demo.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import jakarta.validation.constraints.NotNull;
-
 import lombok.Data;
 
 @Data
