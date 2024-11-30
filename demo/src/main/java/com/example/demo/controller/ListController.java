@@ -92,4 +92,31 @@ public class ListController {
 	// SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 	// String formattedDate = sdf.format(timestamp);
 
+	@GetMapping("/book")
+	public String search(Model model)
+			throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
+
+		//insertWrookbook();
+
+		List<Map<String, Object>> getList = jdbcTemplate
+				.queryForList("SELECT title, link, category, insert_date, update_date FROM workbook_tbl");
+
+		List<Workbooks> workbookList = new ArrayList<>();
+		for (Map<String, Object> map : getList) {
+			Workbooks workbooks = new Workbooks();
+			workbooks.setTitle((String) map.get("title"));
+			workbooks.setLink((String) map.get("link"));
+			workbooks.setCategory((String) map.get("category"));
+			workbooks.setInsert_date((String) map.get("insert_date").toString());
+			workbooks.setUpdate_date((String) map.get("update_date").toString());
+
+			workbookList.add(workbooks);
+		}
+
+		// 画面表示
+		model.addAttribute("workbookList", workbookList);
+
+		return "workbookList";
+	}
+
 }

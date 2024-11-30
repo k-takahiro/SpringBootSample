@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <link th:href="@{styles.css}" rel="stylesheet">
+  <script type="text/javascript" src="/main.js"></script>
   <title>利用者登録画面</title>
 </head>
 <table>
@@ -56,7 +57,7 @@
     <select>
       <option value="">---</option>
       <option th:each="itemKind : ${itemKindMap}" th:value="${itemKind.key}" th:text="${itemKind.value}"
-      th:selected="${itemKind.key == selectedValue}">
+        th:selected="${itemKind.key == selectedValue}">
     </select>
     <br>
 
@@ -65,22 +66,16 @@
      https://qiita.com/parapore/items/22ca680ed8b487b4bea1 
     -->
     <label for="dateOfBirth">生年月日：</label>
-      <select>
-        <option th:each="birthYear : ${birthYearList}"
-                th:value="${birthYear}"
-                th:text="${birthYear}"
-                th:selected="${birthYear.equals(birthYearDefault)}">
-        </option>
-    </select>
+    <select id="year">
+      <option value="0">----</option>
+    </select>年
+    <select id="month">
+      <option value="0">--</option>
+    </select>月
+    <select id="day">
+      <option value="0">--</option>
+    </select>日​
     <br>
-    <select>
-      <option th:each="birthYear : ${mmddList}"
-              th:value="${birthYear}"
-              th:text="${birthYear}"
-              th:selected="${birthYear.equals(birthYearDefault)}">
-      </option>
-  </select>
-  <br>
     <button>確認画面へ</button>
   </form>
 </body>
@@ -92,6 +87,27 @@
   var dd = ("0" + today.getDate()).slice(-2);
   document.getElementById("today").value = yyyy + '-' + mm + '-' + dd;
 
+  //現在の年数オブジェクトを4桁で生成
+  var time = new Date();
+  var year = time.getFullYear();
+  //1900年まで表示
+  for (var i = year; i >= 1900; i--) {
+    createOptionElements(i, 'year');
+  }
+  //1～12の数字を生成
+  for (var i = 1; i <= 12; i++) {
+    createOptionElements(i, 'month');
+  }
+  //1～31の数字を生成
+  for (var i = 1; i <= 31; i++) {
+    createOptionElements(i, 'day');
+  }
+
+  function createOptionElements(num, parentId) {
+    var doc = document.createElement('option');
+    doc.value = doc.innerHTML = num;
+    document.getElementById(parentId).appendChild(doc);
+  }
 </script>
 
 </html>
