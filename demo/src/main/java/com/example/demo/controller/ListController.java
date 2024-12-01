@@ -16,6 +16,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.xml.sax.SAXException;
 
 import com.example.demo.model.Workbooks;
@@ -27,7 +29,7 @@ public class ListController {
 	private JdbcTemplate jdbcTemplate;
 
 	@GetMapping("/workbookList")
-	public String roadFile(Model model)
+	public String roadFile(Model model, @ModelAttribute("formModel") Workbooks bookdata)
 			throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
 
 		// insertWrookbook();
@@ -83,23 +85,14 @@ public class ListController {
 		}
 	}
 
-	// TODO: Date型とTimestamp型の違いについて
-	// https://qiita.com/mumian1014/items/921ef11c7e5a937980fd
-	// Timestampの実装一例は下記↓に示す。
-	// 協定世界時のUTC 1970年1月1日深夜零時との差をミリ秒で取得
-	// ミリ秒を引数としてTimestampオブジェクトを作成
-	// Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-	// SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-	// String formattedDate = sdf.format(timestamp);
-
-	@GetMapping("/book")
-	public String search(Model model)
+	// @GetMapping("/book")
+	@RequestMapping("/book")
+	public String search(@ModelAttribute("formModel") Workbooks wbData, Model model)
 			throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
 
-		//insertWrookbook();
-
 		List<Map<String, Object>> getList = jdbcTemplate
-				.queryForList("SELECT title, link, category, insert_date, update_date FROM workbook_tbl");
+				.queryForList("SELECT title, link, category, insert_date, update_date FROM workbook_tbl where title ILIKE '%"
+						+ wbData.getTitle() + "%'");
 
 		List<Workbooks> workbookList = new ArrayList<>();
 		for (Map<String, Object> map : getList) {
@@ -112,11 +105,9 @@ public class ListController {
 
 			workbookList.add(workbooks);
 		}
-
 		// 画面表示
 		model.addAttribute("workbookList", workbookList);
 
 		return "workbookList";
 	}
-
 }

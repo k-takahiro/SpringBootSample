@@ -42,35 +42,6 @@ public class DemoController {
         model.addAttribute("itemKindMap", itemKindMap);
         model.addAttribute("user", new User());
 
-        // 生年月日のプルダウンリスト項目を作成する。
-        // Configurator.getInstance().getValueByKey("key1"); TODO:設定値は一旦直書き(マジックナンバー)する。
-        LocalDate startDay = LocalDate.of(2000, 1, 1);
-        LocalDate endDay = LocalDate.of(2010, 1, 11);
-        long diffDay = ChronoUnit.DAYS.between(startDay, endDay);
-        var dateOfBirthList = new LinkedList<LocalDate>();
-        for (int i = 0; i < Math.toIntExact(diffDay); i++) {
-            dateOfBirthList.add(startDay.plusDays(i));
-        }
-
-        var yyyy = "";
-        var yyyyList = new ArrayList<String>();
-        var mmddList = new ArrayList<String>();
-        for (var day : dateOfBirthList){
-            if (!yyyy.equals(String.valueOf( day.getYear()))){
-                yyyyList.add(String.valueOf( day.getYear()));
-                yyyy = String.valueOf( day.getYear());
-            }
-            mmddList.add (String.valueOf(day.getMonthValue()) + "-" + String.valueOf( day.getDayOfMonth()));
-        }
-
-        model.addAttribute("birthYearList", yyyyList);
-        model.addAttribute("mmddList", mmddList);
-
-		// LocalDateの月末日を取得
-		LocalDate targetDate = LocalDate.of(2020, 2, 1);
-		LocalDate result = targetDate.with(TemporalAdjusters.lastDayOfMonth());
-		System.out.println("LocalDate.with(TemporalAdjusters.lastDayOfMonth()) = " + result);
-
         return "form";
     }
 

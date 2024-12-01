@@ -12,10 +12,6 @@
 		<!--入力した値をth:object="${formModel}"に詰める  -->
 		<!--th:valueで初期値が入るようにする  -->
 		<form method="post" th:action="@{/book}" th:object="${formModel}">
-			<!-- <label>ジャンル:</label>
-			<input type="text" name="genre" th:value="*{genre}"><p>
-			<label>著者　　:</label>
-			<input type="text" name="author" th:value="*{author}"><p> -->
 			<label>タイトル:</label>
 			<input type="text" name="title" th:value="*{title}"><p>
 			<input type="submit" value="検索">
