@@ -29,20 +29,8 @@
     <input type="hidden" name="expenses" th:value="*{expenses}">
     <input type="hidden" name="comments" th:value="*{comments}">
     <input type="hidden" name="status" th:value="*{status}">
-    <input type="submit" onclick="moveCheck()" value="登録">
+    <input type="submit" value="登録">
   </form>
 </body>
-
-<script>
-  function moveCheck() {
-    if (confirm("登録をしてもよろしいでしょうか。")) {
-
-    }
-    else {
-      alert("キャンセルしました。");
-    }
-  }
-
-</script>
 
 </html>

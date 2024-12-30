@@ -32,7 +32,6 @@
           <td th:text=${user.id}></td>
           <td th:text=${user.name}></td>
           <td>
-            <!-- <a class="btn btn-primary">詳細</a> -->
           <td><a th:href="@{/user/{user.id}(id=*{user.id})}">詳細</a></td>
           </td>
           <td>

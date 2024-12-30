@@ -22,13 +22,12 @@ public class KakeiboKantanUserList {
     @RequestMapping(method = RequestMethod.GET)
     public String getAllUser(Model model) {
 
-        // Userテーブルの全データを取得.
+        // Userテーブルの全データを取得する
         List<Map<String, Object>> getList = jdbcTemplate
                 .queryForList("SELECT * FROM public.easy_plan_household_account");
 
         // 結果返却用の変数：userList
-        // 取得したデータを結果返却用のListに格納していく
-        // 結果返却用のListに追加
+        // 取得したデータを結果返却用のListに追加していく
         List<UserEasyHouse> userList = new ArrayList<>();
         for (Map<String, Object> map : getList) {
             UserEasyHouse user = new UserEasyHouse();
@@ -43,11 +42,11 @@ public class KakeiboKantanUserList {
             user.setUser_update_date((String) map.get("update_date").toString());
 
             userList.add(user);
-
-            // 画面表示
+            
             model.addAttribute("kakeiboKantan", userList);
             
         }
+        // 画面表示
         return "kakeiboKantanUserList";
     }
 }

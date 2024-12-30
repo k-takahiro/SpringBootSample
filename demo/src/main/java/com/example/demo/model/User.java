@@ -36,10 +36,9 @@ public class User {
     @NotNull(message = "日付を入力してください")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String inputDate;
-    // private Data inputDate; // 型がDataはエラーになるためコメントアウトした。
 
     // 利用者電話番号 
-    // TODO: javascriptにてバリデーションを実装したい。
+     @NotBlank(message = "電話番号を入力してください")
     private String user_phone;
 
     // 利用者ユーザID

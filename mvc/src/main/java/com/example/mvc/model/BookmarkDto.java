@@ -1,10 +1,10 @@
-package com.example.demo.model;
+package com.example.mvc.model;
 
 import lombok.Data;
 
 // 学習帳_テーブル
 @Data
-public class Workbooks {
+public class BookmarkDto {
 
     // タイトル
     private String title;

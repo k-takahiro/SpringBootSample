@@ -9,7 +9,6 @@
 
 <body>
     <div id="form">
-
         <p class="form-title">Login</p>
         <div style="color: red;" th:text="${message}"></div>
         <form action="/login" method="post">
@@ -23,10 +22,8 @@
             </div>
             <button type="submit">ログイン</button>
         </form>
-        <!-- <a href="form.html">ユーザ登録画面へ</a> -->
         <a th:href="@{'/form'}">新規登録はこちら</a>
         <br>
-        <a th:href="@{'/workbookList'}">Bookmark一覧へ</a>
     </div>
 </body>
 

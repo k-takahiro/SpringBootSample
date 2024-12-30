@@ -38,6 +38,4 @@ public class UserRepository {
         List<User> userList = jdbcTemplate.query(sql, param, ROW_MAPPER);
         return userList.stream().findFirst();
     }
-
-
 }

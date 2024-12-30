@@ -37,22 +37,15 @@
     <label for="inputDate">利用開始日：</label>
     <input type="date" id="today" th:field="*{inputDate}"><br>
 
-    <!-- TODO:エクリプスのコンパイラーのように存在しない変数、メソッドにエラーを表示させたい  -->
     <label for="phone">電話番号：</label>
-    <input type="text" id="phone" placeholder="(例) 080-777-777" oninput="checkPassword()"><br>
+    <input type="text" id="phone" placeholder="(例) 080-777-777"><br>
 
     <label for="userId">ユーザID：</label>
     <input type="text" th:field="*{userId}"><br>
 
     <label for="password">パスワード:</label>
     <input type="password" id="password" name="password" th:field="*{password}"><br>
-
-    <!-- TODO:入力したパスワード再確認をここに配置  -->
-    <!-- パスワードのバリデーションがOKになるまで、・非活性にしたい、 ・比較元との完全一致-->
-    <!-- パスワード完全一致について、（spring徹底入門の228ページ付近）　　これが独自のバリデータで相関チェックのようである。 -->
-
-    <!-- セレクトボックスの出力については、「spring徹底入門の263ページ付近」がヒントかもだが、
-     アクション（ボタン押下）を境にリストの初期化はbeanObjectの理解も手掛かりかも -->
+    
     <label for="itemKind">都道府県：</label>
     <select>
       <option value="">---</option>
@@ -61,10 +54,6 @@
     </select>
     <br>
 
-    <!-- 生年月日を記載する欄をここに配置する。セレクトボックス、生年月日はネットで情報が多いためリストの初期化の解消にもつながりそう。
-    まずは、シンプル（初期値などがプログラムへ直書きのもの）なものを参考にさせてもらう。jsでの非同期処理（ajax）やリストの動的変化は今後。。
-     https://qiita.com/parapore/items/22ca680ed8b487b4bea1
-    -->
     <label for="dateOfBirth">生年月日：</label>
     <select id="year">
       <option value="0">----</option>

@@ -27,20 +27,16 @@ public class UserEasyHouse {
     // 支出
     @NotNull(message = "支出を入力してください")
     private Integer expenses;
-
-    // TODO:途中に入力チェックをしない項目があるとこれ以降は入力チェックされない。
-    // 再現、＠NotNullをコメントアウトして、画面にて未入力の状態で登録押下。
+    
     // 収支
     @NotNull(message = "収支を入力してください")
     private Integer income_and_expenditure;
     
     // コメント
-    //@NotNull(message = "コメントを入力してください")
     @NotBlank(message = "コメントを入力してください")
     private String comments;
 
     // ステータス
-   // @NotNull(message = "ステータスを入力してください")
     @NotBlank(message = "ステータスを入力してください")
     private String status;
 

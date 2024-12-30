@@ -15,16 +15,15 @@
             <td><a href="#">家計簿削除</a></td>
         </tr>
     </table>
-    <!-- 縦入力 -->
+
     <form th:action="@{/kakeiboNyuryoku}" th:object="${userEasyHouse}" method="post">
         <p style="text-decoration:underline; text-decoration-color:hwb(237 24% 10%);">簡単プラン</p>
 
         <label for="userId">ユーザID：</label>
-        <input type="text" id="userId" th:field="*{id}" onclick="alertFun()" readonly><br>
+        <input type="text" id="userId" th:field="*{id}"><br>
 
-        <!-- クリックで表示させるテキストにはhiddenクラスを付ける -->
         <label for="name">氏名：</label>
-        <input type="text" id="name" th:field="*{name}" onclick="changeColor()" readonly><br>
+        <input type="text" id="name" th:field="*{name}"><br>
         <p id="btn2-text" class="hidden">氏名は変更できません</p>
 
         <label for="name">対象日：</label>
@@ -45,8 +44,8 @@
         <label for="income_and_expenditure">収支：</label>
         <input type="number" id="income_and_expenditure" name="income_and_expenditure"
             th:field="*{income_and_expenditure}">
-            <span class="errorStr" th:errors="*{income_and_expenditure}"></span>
-            <br>
+        <span class="errorStr" th:errors="*{income_and_expenditure}"></span>
+        <br>
 
         <label for="comments">コメント：</label>
         <input type="text" id="comments" name="comments" th:field="*{comments}">
@@ -71,32 +70,6 @@
     var mm = ("0" + (today.getMonth() + 1)).slice(-2);
     var dd = ("0" + today.getDate()).slice(-2);
     document.getElementById("today").value = yyyy + '-' + mm + '-' + dd;
-
-    // https://nicoiworks.com/js-2/
-    function syukeiFun() {
-        var income = document.getElementById("income");
-        var expenses = document.getElementById("expenses");
-        var income_and_expenditure = Number(income.value) + Number(expenses.value)
-        document.getElementById("income_and_expenditure").value = income_and_expenditure;
-    }
-
-    function alertFun() {
-        alert('ユーザIDは変更できません');
-        var obj = document.getElementById("userId");
-        if (obj.style.borderWidth == "1px") {
-            obj.style.borderWidth = "1px";
-        } else {
-            obj.style.border = "solid 1px red";
-        }
-    }
-
-    // // TODO:addEventListener
-    // const myInput = document.getElementById('btn2-text');
-    // myInput.addEventListener('click', function (event) {
-    //     // ボタンクリックでhiddenクラスを付け外しする
-    //     myInput.classList.toggle('hidden');
-    // });
-
 </script>
 
 <style>

@@ -1,8 +1,5 @@
-##spring.application.name=demo プロパティ形式からyml形式に変更時のエラー
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres # 接続先URL
     username: postgres # ユーザー名
     password: nakajun250tt # パスワード
-# spring.jackson.date-format=yyyy/MM/dd HH:mm:ss
-# spring.jackson.time-zone=Asia/Tokyo

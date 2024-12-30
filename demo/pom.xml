@@ -51,8 +51,6 @@
 			<artifactId>lombok</artifactId>
 			<version>1.18.26</version>
 		</dependency>
-
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -82,17 +80,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
-<dependency>
-    <groupId>org.jsoup</groupId>
-    <artifactId>jsoup</artifactId>
-    <version>1.18.1</version>
-</dependency>
-
 	</dependencies>
-
-
 	<build>
 		<plugins>
 			<plugin>

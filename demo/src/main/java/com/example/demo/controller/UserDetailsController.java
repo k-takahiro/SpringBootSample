@@ -9,13 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.demo.model.User;
 
 @Controller
-// @RequestMapping("userList")
 public class UserDetailsController {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-   // @RequestMapping(method = RequestMethod.GET)
    @GetMapping("/user/{id}")
     public String displayView(int id, Model model) {
 

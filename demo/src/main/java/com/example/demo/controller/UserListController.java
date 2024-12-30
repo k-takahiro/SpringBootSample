@@ -22,20 +22,9 @@ public class UserListController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getAllUser(Model model) {
-        List<User> userList = selectMany();
-
-        // 画面表示
-        model.addAttribute("userList", userList);
-        return "userList";
-    }
-
-    public List<User> selectMany() throws DataAccessException {
-        // Userテーブルの全データを取得.
+        // Userテーブルの全データを取得
+        // 結果返却用の変数：userListに取得したデータを結果返却用のListに追加していく
         List<Map<String, Object>> getList = jdbcTemplate.queryForList("SELECT id, user_name FROM user_master_tbl");
-
-        // 結果返却用の変数：userList
-        // 取得したデータを結果返却用のListに格納していく
-        // 結果返却用のListに追加
         List<User> userList = new ArrayList<>();
         for (Map<String, Object> map : getList) {
             User user = new User();
@@ -43,6 +32,9 @@ public class UserListController {
             user.setName((String) map.get("user_name"));
             userList.add(user);
         }
-        return userList;
+
+        // 画面表示
+        model.addAttribute("userList", userList);
+        return "userList";
     }
 }

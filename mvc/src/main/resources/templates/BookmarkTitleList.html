@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Bookmark一覧画面</title>
+</head>
+
+<body>
+  <h3>Bookmark一覧たち</h3>
+</body>
+
+<form method="post" th:action="@{/bookmarkListSearch}" th:object="${formModel}">
+  <label>タイトル:</label>
+  <input type="text" name="title" th:value="*{title}">
+  <p>
+    <input type="submit" value="検索">
+</form>
+
+<div>
+  <table border="1" style="border-collapse: collapse" cellpadding="2">
+    <thead>
+      <tr>
+        <th>タイトル</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="workbook: ${titleList}">
+        <td th:text=${workbook.title}></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</html>
