@@ -37,7 +37,7 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String inputDate;
 
-    // 利用者電話番号 
+    // 利用者電話番号
      @NotBlank(message = "電話番号を入力してください")
     private String user_phone;
 

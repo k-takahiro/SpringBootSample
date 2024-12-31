@@ -31,6 +31,7 @@ public class UserDetailsController {
         user.setUser_insert_date((String) map.get("user_insert_date").toString());
         user.setUser_update_date((String) map.get("user_update_date").toString());
         model.addAttribute("userDetails", user);
+        
         return "userDetails";
     }
 

@@ -19,7 +19,7 @@ public class UserInfoInsertController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @PostMapping("/userInfoInsert")
+    @PostMapping("/accountCreateFrom")
     public String userInsert(Model model, User user) throws ParseException {
 
         String sqlText = """

@@ -5,17 +5,17 @@
   <meta charset="UTF-8">
   <link th:href="@{styles.css}" rel="stylesheet">
   <script type="text/javascript" src="/main.js"></script>
-  <title>利用者登録画面</title>
+  <title>利用者情報登録画面</title>
 </head>
 <table>
   <tr>
-    <td><a href="#">利用者入力</a></td>
+    <td><a href="#">利用者情報登録</a></td>
     <td><a href="userList.html" th:href="@{/userList}">利用者一覧</a></td>
   </tr>
 </table>
 
 <body>
-  <form th:action="@{/form}" th:object="${user}" method="post">
+  <form th:action="@{/accountCreateFrom}" th:object="${user}" method="post">
     <table th:if="${validationError}">
       <tr th:each="error : ${validationError}">
         <td style="color: red;" th:text="${error}"></td>
@@ -41,26 +41,8 @@
 
     <label for="password">パスワード:</label>
     <input type="password" id="password" name="password" th:field="*{password}"><br>
-    
-    <label for="itemKind">都道府県：</label>
-    <select>
-      <option value="">---</option>
-      <option th:each="itemKind : ${itemKindMap}" th:value="${itemKind.key}" th:text="${itemKind.value}"
-        th:selected="${itemKind.key == selectedValue}">
-    </select>
     <br>
 
-    <label for="dateOfBirth">生年月日：</label>
-    <select id="year">
-      <option value="0">----</option>
-    </select>年
-    <select id="month">
-      <option value="0">--</option>
-    </select>月
-    <select id="day">
-      <option value="0">--</option>
-    </select>日​
-    <br>
     <button>確認画面へ</button>
   </form>
 </body>
@@ -72,27 +54,6 @@
   var dd = ("0" + today.getDate()).slice(-2);
   document.getElementById("today").value = yyyy + '-' + mm + '-' + dd;
 
-  //現在の年数オブジェクトを4桁で生成
-  var time = new Date();
-  var year = time.getFullYear();
-  //1900年まで表示
-  for (var i = year; i >= 1900; i--) {
-    createOptionElements(i, 'year');
-  }
-  //1～12の数字を生成
-  for (var i = 1; i <= 12; i++) {
-    createOptionElements(i, 'month');
-  }
-  //1～31の数字を生成
-  for (var i = 1; i <= 31; i++) {
-    createOptionElements(i, 'day');
-  }
-
-  function createOptionElements(num, parentId) {
-    var doc = document.createElement('option');
-    doc.value = doc.innerHTML = num;
-    document.getElementById(parentId).appendChild(doc);
-  }
 </script>
 
 </html>

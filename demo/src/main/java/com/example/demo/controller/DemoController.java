@@ -37,21 +37,4 @@ public class DemoController {
         // エラーなしは確認画面へ
         return "confirm";
     }
-
-    @GetMapping("/form")
-    public String Form(Model model) {
-
-        // 都道府県テーブルから都道府県コード、都道府県名を取得して都道府県リストへ代入する。
-        // 都道府県を設定するプルダウンリストを作成する。
-        List<Map<String, Object>> prefList = jdbcTemplate
-                .queryForList("SELECT prefcode, prefname FROM public.prefmastertbl");
-        Map<String, String> itemKindMap = new LinkedHashMap<String, String>();
-        for (var prefPair : prefList) {
-            itemKindMap.put((String) prefPair.get("prefcode"), (String) prefPair.get("prefname"));
-        }
-        model.addAttribute("itemKindMap", itemKindMap);
-        model.addAttribute("user", new User());
-
-        return "form";
-    }
 }
