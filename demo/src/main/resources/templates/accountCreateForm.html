@@ -3,16 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link th:href="@{styles.css}" rel="stylesheet">
-  <script type="text/javascript" src="/main.js"></script>
   <title>利用者情報登録画面</title>
 </head>
-<table>
-  <tr>
-    <td><a href="#">利用者情報登録</a></td>
-    <td><a href="userList.html" th:href="@{/userList}">利用者一覧</a></td>
-  </tr>
-</table>
 
 <body>
   <form th:action="@{/accountCreateForm}" th:object="${user}" method="post">
@@ -29,31 +21,10 @@
 
     <label for="age">年齢：</label>
     <input type="number" th:field="*{age}"><br>
-
-    <label for="inputDate">利用開始日：</label>
-    <input type="date" id="today" th:field="*{inputDate}"><br>
-
-    <label for="phone">電話番号：</label>
-    <input type="text" id="phone" th:field="*{user_phone}" placeholder="(例) 080-777-777"><br>
-
-    <label for="userId">ユーザID：</label>
-    <input type="text" th:field="*{userId}"><br>
-
-    <label for="password">パスワード:</label>
-    <input type="password" id="password" name="password" th:field="*{password}"><br>
     <br>
 
     <button>確認画面へ</button>
   </form>
 </body>
-<script th:inline="javascript">
-  var today = new Date();
-  today.setDate(today.getDate());
-  var yyyy = today.getFullYear();
-  var mm = ("0" + (today.getMonth() + 1)).slice(-2);
-  var dd = ("0" + today.getDate()).slice(-2);
-  document.getElementById("today").value = yyyy + '-' + mm + '-' + dd;
-
-</script>
 
 </html>
