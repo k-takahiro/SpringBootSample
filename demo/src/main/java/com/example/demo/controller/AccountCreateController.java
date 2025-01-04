@@ -4,22 +4,50 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.example.demo.model.User;
 
 @Controller
-public class UserInfoInsertController {
+public class AccountCreateController {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @PostMapping("/accountCreateFrom")
+
+    @GetMapping("/accountCreateFormView")
+    public String getView(@Validated User user, BindingResult result) {
+        return "accountCreateForm";
+    }
+
+    @PostMapping("/accountCreateForm")
+    public String Confirm(@ModelAttribute @Validated User user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            List<String> errorList = result.getAllErrors().stream()
+                    .map(e -> e.getDefaultMessage())
+                    .collect(Collectors.toList());
+            model.addAttribute("validationError", errorList);
+            // エラーの場合は再度入力画面へ
+            return "accountCreateForm";
+        }
+        model.addAttribute("user", user);
+        // エラーなしは確認画面へ
+        return "accountCreateFormConfirm";
+    }
+
+
+   // @PostMapping("/accountCreateForm")
     public String userInsert(Model model, User user) throws ParseException {
 
         String sqlText = """
