@@ -3,21 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>ログインページ</title>
+    <title th:text="${title}">Hello</title> <!-- メッセージの外部化 -->
     <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 
 <body>
     <div id="form">
-        <p class="form-title">Login</p>
+        <p class="form-title" th:text="#{common.Login}"></p>
         <div style="color: red;" th:text="${message}"></div>
         <form action="/login" method="post">
+            <!-- ユーザID -->
             <div class="userId">
-                <label for="userId">ユーザID</label>
+                <label for="userId" th:text="#{common.UserId}"></label>
                 <input type="text" id="userId" name="userId" th:value="${userId}">
             </div>
+            <!-- パスワード -->
             <div class="password">
-                <label for="password">パスワード</label>
+                <label for="password" th:text="#{common.Password}"></label>
                 <input type="password" id="password" name="password" th:value="${password}">
             </div>
             <button type="submit">ログイン</button>

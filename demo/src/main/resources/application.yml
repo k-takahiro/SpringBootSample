@@ -3,3 +3,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres # 接続先URL
     username: postgres # ユーザー名
     password: postgres # パスワード
+
+  messages:
+    basename:messages_ja

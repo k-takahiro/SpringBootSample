@@ -3,16 +3,19 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>入力内容確認画面</title>
+  <title th:text="${title}">Hello</title> <!-- メッセージの外部化 -->
 </head>
 
 <body>
   <div th:object="${user}"></div>
   <p>入力内容をご確認ください</p>
   <span th:inline="text">
-    氏名： [[${user.name}]]<br>
-    E-Mail： [[${user.email}]]<br>
-    年齢： [[${user.age}]]<br>
+    <!-- 氏名 -->
+    <label for="name" th:text="#{accountCreateFormConfirm.name}"></label> [[${user.name}]]<br>
+    <!-- メールアドレス -->
+    <label for="name" th:text="#{accountCreateFormConfirm.email}"></label> [[${user.email}]]<br>
+    <!-- 年齢 -->
+    <label for="name" th:text="#{accountCreateFormConfirm.age}"></label> [[${user.age}]]<br>
   </span>
   </div>
 

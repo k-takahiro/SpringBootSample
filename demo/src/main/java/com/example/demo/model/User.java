@@ -10,16 +10,16 @@ import lombok.Data;
 @Data
 public class User {
 
-    @NotBlank(message = "名前を入力してください")
-    @Size(max = 10, message = "名前は10桁以内で入力してください")
+    @NotBlank(message = "{NotBlank.User.name}")
+    @Size(max = 10, message = "{Max.User.name}")
     private String name;
 
-    @NotBlank(message = "メールアドレスを入力してください")
-    @Email
+    @NotBlank(message = "{NotBlank.User.email}")
+    @Email(message = "{Email.User.email}")
     private String email;
 
-    @NotNull(message = "年齢を入力してください")
-    @Max(value = 100, message = "正しい年齢を入力してください")
+    @NotNull(message = "{NotNull.User.age}")
+    @Max(value = 100, message = "{Max.User.age}")
     private Integer age;
 
 }
